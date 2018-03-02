@@ -29,12 +29,12 @@ public class GarageServiceImpl implements GarageService {
      */
     @Override
     @SneakyThrows
-    public void removeCar(Garage garage, Long carId) {
+    public void removeCar(Garage garage, String carNumber) {
         Car car = garage.getCars()
                 .stream()
-                .filter(item -> item.getId().equals(carId))
+                .filter(item -> item.getNumber().equals(carNumber))
                 .findFirst()
-                .orElseThrow(() -> new GarageException(String.format("Car with id=%s not found", carId)));
+                .orElseThrow(() -> new GarageException(String.format("Car with number=%s not found", carNumber)));
         garage.getCars().remove(car);
     }
 }

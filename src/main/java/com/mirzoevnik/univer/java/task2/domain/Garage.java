@@ -2,7 +2,9 @@ package com.mirzoevnik.univer.java.task2.domain;
 
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -10,7 +12,8 @@ import java.util.List;
  */
 @Getter
 @Setter
+@ToString(exclude = "id")
 public class Garage {
     private Long id;
-    private List<Car> cars;
+    private List<Car> cars = new ArrayList<>();
 }
