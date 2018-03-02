@@ -5,6 +5,7 @@ import com.mirzoevnik.univer.java.task2.domain.Garage;
 import com.mirzoevnik.univer.java.task2.exception.GarageException;
 import com.mirzoevnik.univer.java.task2.service.GarageService;
 import com.mirzoevnik.univer.java.task2.service.GarageServiceImpl;
+import com.mirzoevnik.univer.java.task2.util.JSONUtils;
 
 import java.util.Scanner;
 
@@ -13,6 +14,7 @@ import java.util.Scanner;
  */
 public class GarageUI {
 
+    public static final String FILE_NAME = "cars.json";
     private GarageService garageService;
     private Garage garage;
 
@@ -39,7 +41,7 @@ public class GarageUI {
         }
     }
 
-    public void executeCommand(String command) {
+    private void executeCommand(String command) {
         switch (command) {
             case "1": showGarage(); break;
             case "2": addCarToGarage(); break;
@@ -55,7 +57,7 @@ public class GarageUI {
     /**
      * Показать меню
      */
-    public void showMenu() {
+    private void showMenu() {
         System.out.println("1. Посмотреть гараж");
         System.out.println("2. Добавить машину в гараж");
         System.out.println("3. Убрать машину из гаража");
@@ -65,7 +67,7 @@ public class GarageUI {
     /**
      * Посмотреть гараж
      */
-    public void showGarage() {
+    private void showGarage() {
         if (garage.getCars().isEmpty()) {
             System.out.println("Garage is empty");
         } else {
@@ -77,7 +79,7 @@ public class GarageUI {
     /**
      * Добавить машину в гараж
      */
-    public void addCarToGarage() {
+    private void addCarToGarage() {
         System.out.println(String.format("List of cars: %s", garage.getCars()));
         Car car = enterCar();
         try {
@@ -90,7 +92,7 @@ public class GarageUI {
     /**
      * Убрать машину из гаража
      */
-    public void removeCarFromGarage() {
+    private void removeCarFromGarage() {
         System.out.println("Please, enter car number:");
         String carNumber = new Scanner(System.in).next();
         try {
@@ -103,13 +105,13 @@ public class GarageUI {
     /**
      * Выход
      */
-    public void exitFromGarage() {
+    private void exitFromGarage() {
         System.out.println("Goodbye!");
         save();
     }
 
     private void save() {
-        // TODO: save in json
+        JSONUtils.write(FILE_NAME, garage);
     }
 
     private Car enterCar() {

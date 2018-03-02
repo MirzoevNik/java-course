@@ -2,6 +2,7 @@ package com.mirzoevnik.univer.java.task2;
 
 import com.mirzoevnik.univer.java.task2.domain.Garage;
 import com.mirzoevnik.univer.java.task2.ui.GarageUI;
+import com.mirzoevnik.univer.java.task2.util.JSONUtils;
 
 /**
  * @author mirzoevnik
@@ -15,6 +16,6 @@ public class Task2Runner {
     }
 
     private static Garage getGarage() {
-        return new Garage();
+        return JSONUtils.read(GarageUI.FILE_NAME);
     }
 }
