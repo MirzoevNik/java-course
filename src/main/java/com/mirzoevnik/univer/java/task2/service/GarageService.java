@@ -18,7 +18,7 @@ public interface GarageService {
     /**
      * Убрать машину из гаража
      * @param garage гараж
-     * @param car машина
+     * @param carId id машины
      */
-    void removeCar(Garage garage, Car car);
+    void removeCar(Garage garage, Long carId);
 }
