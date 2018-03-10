@@ -1,10 +1,12 @@
-package com.mirzoevnik.univer.java.task2.ui;
+package com.mirzoevnik.univer.java.task3.ui;
 
-import com.mirzoevnik.univer.java.task2.domain.Car;
-import com.mirzoevnik.univer.java.task2.domain.Garage;
+import com.mirzoevnik.univer.java.task2.ui.AbstractGarageUI;
+import com.mirzoevnik.univer.java.task3.domain.Car;
 import com.mirzoevnik.univer.java.task2.exception.GarageException;
-import com.mirzoevnik.univer.java.task2.service.GarageService;
-import com.mirzoevnik.univer.java.task2.service.GarageServiceImpl;
+import com.mirzoevnik.univer.java.task3.domain.Garage;
+import com.mirzoevnik.univer.java.task3.domain.Mark;
+import com.mirzoevnik.univer.java.task3.domain.Model;
+import com.mirzoevnik.univer.java.task3.service.GarageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -13,28 +15,26 @@ import java.util.Scanner;
 /**
  * @author mirzoevnik
  */
+@Component
 public class GarageUI extends AbstractGarageUI {
 
-    private GarageService garageService;
+    private final GarageService garageService;
+
     private Garage garage;
 
-    public GarageUI() {
+    @Autowired
+    public GarageUI(GarageService garageService) {
+        this.garageService = garageService;
         loadGarage();
+        run();
     }
 
     private void loadGarage() {
         if (garage == null) {
-            garage = getGarageService().loadGarage();
+            System.out.println(garageService);
+            garage = garageService.loadGarage();
         }
     }
-
-    private GarageService getGarageService() {
-        if (garageService == null) {
-            garageService = new GarageServiceImpl();
-        }
-        return garageService;
-    }
-
 
     @Override
     protected void showGarage() {
@@ -51,25 +51,26 @@ public class GarageUI extends AbstractGarageUI {
         System.out.println(String.format("List of cars: %s", garage.getCars()));
         Car car = enterCar();
         try {
-            getGarageService().addCar(garage, car);
+            garageService.addCar(garage, car);
         } catch (GarageException ex) {
             System.out.println(ex.getMessage());
         }
     }
 
-
+    @Override
     protected void removeCarFromGarage() {
         System.out.println("Please, enter car number:");
         String carNumber = new Scanner(System.in).next();
         try {
-            getGarageService().removeCar(garage, carNumber);
+            garageService.removeCar(garage, carNumber);
         } catch (GarageException ex) {
             System.out.println(ex.getMessage());
         }
     }
 
+    @Override
     protected void save() {
-        getGarageService().save(garage);
+        garageService.save(garage);
     }
 
     private Car enterCar() {
@@ -77,9 +78,13 @@ public class GarageUI extends AbstractGarageUI {
         Scanner scanner = new Scanner(System.in);
         Car car = new Car();
         System.out.print("Mark: ");
-        car.setMark(scanner.next());
+        Mark mark = new Mark();
+        mark.setMarkCode(scanner.next());
         System.out.print("Model: ");
-        car.setModel(scanner.next());
+        Model model = new Model();
+        model.setMark(mark);
+        model.setModelCode(scanner.next());
+        car.setModel(model);
         System.out.print("Number: ");
         car.setNumber(scanner.next());
         return car;
