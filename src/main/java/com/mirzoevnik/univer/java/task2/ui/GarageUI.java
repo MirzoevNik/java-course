@@ -5,8 +5,6 @@ import com.mirzoevnik.univer.java.task2.domain.Garage;
 import com.mirzoevnik.univer.java.task2.exception.GarageException;
 import com.mirzoevnik.univer.java.task2.service.GarageService;
 import com.mirzoevnik.univer.java.task2.service.GarageServiceImpl;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 
 import java.util.Scanner;
 
