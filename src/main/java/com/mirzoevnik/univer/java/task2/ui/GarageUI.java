@@ -5,7 +5,6 @@ import com.mirzoevnik.univer.java.task2.domain.Garage;
 import com.mirzoevnik.univer.java.task2.exception.GarageException;
 import com.mirzoevnik.univer.java.task2.service.GarageService;
 import com.mirzoevnik.univer.java.task2.service.GarageServiceImpl;
-import com.mirzoevnik.univer.java.task2.util.JSONUtils;
 
 import java.util.Scanner;
 
@@ -14,12 +13,17 @@ import java.util.Scanner;
  */
 public class GarageUI {
 
-    public static final String FILE_NAME = "cars.json";
     private GarageService garageService;
     private Garage garage;
 
-    public GarageUI(Garage garage) {
-        this.garage = garage;
+    public GarageUI() {
+        loadGarage();
+    }
+
+    private void loadGarage() {
+        if (garage == null) {
+            garage = getGarageService().loadGarage();
+        }
     }
 
     private GarageService getGarageService() {
@@ -111,7 +115,7 @@ public class GarageUI {
     }
 
     private void save() {
-        JSONUtils.write(FILE_NAME, garage);
+        getGarageService().save(garage);
     }
 
     private Car enterCar() {

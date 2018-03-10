@@ -3,12 +3,31 @@ package com.mirzoevnik.univer.java.task2.service;
 import com.mirzoevnik.univer.java.task2.domain.Car;
 import com.mirzoevnik.univer.java.task2.domain.Garage;
 import com.mirzoevnik.univer.java.task2.exception.GarageException;
+import com.mirzoevnik.univer.java.task2.util.JSONUtils;
 import lombok.SneakyThrows;
 
 /**
  * @author mirzoevnik
  */
 public class GarageServiceImpl implements GarageService {
+
+    private static final String FILE_NAME = "cars.json";
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public Garage loadGarage() {
+        return JSONUtils.read(FILE_NAME);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void save(Garage garage) {
+        JSONUtils.write(FILE_NAME, garage);
+    }
 
     /**
      * {@inheritDoc}

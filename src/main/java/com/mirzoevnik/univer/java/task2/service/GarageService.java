@@ -10,6 +10,18 @@ import com.mirzoevnik.univer.java.task2.exception.GarageException;
 public interface GarageService {
 
     /**
+     * Загрузить гараж из внешнего источника
+     * @return гараж
+     */
+    Garage loadGarage();
+
+    /**
+     * Сохранить гараж
+     * @param garage гараж
+     */
+    void save(Garage garage);
+
+    /**
      * Добавить машину в гараж
      * @param garage гараж
      * @param car машина
