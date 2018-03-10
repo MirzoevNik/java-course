@@ -15,14 +15,13 @@ import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
 /**
  * @author mirzoevnik
  */
-//@Transactional
+@Transactional
 @Service
 @Primary
 public class GarageServiceSpringDataImpl implements GarageService {
