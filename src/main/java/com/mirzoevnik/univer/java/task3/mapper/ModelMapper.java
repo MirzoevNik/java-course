@@ -2,12 +2,12 @@ package com.mirzoevnik.univer.java.task3.mapper;
 
 import com.mirzoevnik.univer.java.task3.domain.Model;
 import com.mirzoevnik.univer.java.task3.service.GarageService;
+import lombok.SneakyThrows;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
 import java.sql.ResultSet;
-import java.sql.SQLException;
 
 /**
  * @author mirzoevnik
@@ -23,7 +23,8 @@ public class ModelMapper implements RowMapper<Model> {
     }
 
     @Override
-    public Model mapRow(ResultSet rs, int rowNum) throws SQLException {
+    @SneakyThrows
+    public Model mapRow(ResultSet rs, int rowNum) {
         Model model = new Model();
         model.setId(rs.getLong("id"));
         model.setMark(garageService.getMarkById(rs.getLong("mark_id")));
