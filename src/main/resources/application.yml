@@ -1,0 +1,17 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://192.168.59.103:5432/nm
+    username: nik
+    password: 123
+    driver-class-name: org.postgresql.Driver
+  liquibase:
+    default-schema: public
+    url: ${spring.datasource.url}
+    user: ${spring.datasource.username}
+    password: ${spring.datasource.password}
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQL9Dialect
+    properties:
+      hibernate:
+        temp:
+          use_jdbc_metadata_defaults: false
