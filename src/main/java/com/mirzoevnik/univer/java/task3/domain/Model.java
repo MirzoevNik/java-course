@@ -21,7 +21,7 @@ public class Model {
     @Column(name = "model_code")
     private String modelCode;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "mark_id")
     private Mark mark;
 }
