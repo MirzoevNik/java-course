@@ -15,7 +15,7 @@ import java.util.Scanner;
 /**
  * @author mirzoevnik
  */
-@Component
+//@Component
 public class GarageUI extends AbstractGarageUI {
 
     private final GarageService garageService;
@@ -31,7 +31,6 @@ public class GarageUI extends AbstractGarageUI {
 
     private void loadGarage() {
         if (garage == null) {
-            System.out.println(garageService);
             garage = garageService.loadGarage();
         }
     }
