@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>Удалить машину из гаража</title>
+</head>
+<body>
+    <h3>Введите данные об автомобиле</h3>
+
+    <form action="#" th:action="@{/remove-car}" th:object="${car}" method="post">
+        <p>Номер: <input type="text" th:field="*{number}" /></p>
+        <p><button type="submit">Удалить</button></p>
+    </form>
+</body>
+</html>

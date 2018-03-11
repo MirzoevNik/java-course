@@ -8,7 +8,7 @@
     <p th:text="'Name: ' + ${name}" />
     <p th:text="${count}" />
 
-    <table>
+    <table border="1">
         <tr>
             <th>MARK</th>
             <th>MODEL</th>
@@ -21,8 +21,18 @@
         </tr>
     </table>
 
+    <br>
+
     <form action="#" data-th-action="@{/add-car}" data-th-object="${model}" method="get">
         <button type="submit">Добавить машину</button>
+    </form>
+
+    <form action="#" data-th-action="@{/remove-car}" data-th-object="${model}" method="get">
+        <button type="submit">Удалить машину</button>
+    </form>
+
+    <form action="#" data-th-action="@{/garage}" method="post">
+        <button type="submit">Сохранить</button>
     </form>
 </body>
 </html>

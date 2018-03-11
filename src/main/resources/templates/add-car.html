@@ -5,6 +5,13 @@
     <title>Добавить машину в гараж</title>
 </head>
 <body>
-    Add car
+    <h3>Введите данные об автомобиле</h3>
+
+    <form action="#" th:action="@{/add-car}" th:object="${car}" method="post">
+        <p>Марка: <input type="text" th:field="*{model.mark.markCode}" /></p>
+        <p>Модель: <input type="text" th:field="*{model.modelCode}" /></p>
+        <p>Номер: <input type="text" th:field="*{number}" /></p>
+        <p><button type="submit">Добавить</button></p>
+    </form>
 </body>
 </html>
