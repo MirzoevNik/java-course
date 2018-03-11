@@ -7,5 +7,22 @@
 <body>
     <p th:text="'Name: ' + ${name}" />
     <p th:text="${count}" />
+
+    <table>
+        <tr>
+            <th>MARK</th>
+            <th>MODEL</th>
+            <th>NUMBER</th>
+        </tr>
+        <tr th:each="car : ${cars}">
+            <td th:text="${car.model.mark.markCode}"/>
+            <td th:text="${car.model.modelCode}"/>
+            <td th:text="${car.number}"/>
+        </tr>
+    </table>
+
+    <form action="#" data-th-action="@{/add-car}" data-th-object="${model}" method="get">
+        <button type="submit">Добавить машину</button>
+    </form>
 </body>
 </html>
